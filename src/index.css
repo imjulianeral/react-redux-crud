@@ -30,17 +30,17 @@ text-decoration: none!important;
 }
 
 /* .navbar .btn {
-flex:1;
-} */
-@media (min-width:768px){
-/* .navbar .btn {
-  flex: 0;
-} */
+flex:0;
 }
+@media (min-width:480px){
+  .navbar .btn {
+    flex: 0;
+  }
+} */
 .acciones {
 margin: 1rem 0;
 }
-@media (min-width:768px) {
+@media (min-width:480px) {
 .acciones{
   margin: 0;
 }

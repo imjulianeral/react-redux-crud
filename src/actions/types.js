@@ -1,0 +1,5 @@
+export const SHOW_PRODUCTS = 'SHOW_PRODUCTS'; 
+export const SHOW_SINGLE_PRODUCT = 'SHOW_SINGLE_PRODUCT'; 
+export const ADD_PRODUCT = 'ADD_PRODUCT'; 
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'; 
+export const DELETE_PRODUCT = 'DELETE_PRODUCT'; 
