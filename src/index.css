@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   padding: 0;
@@ -12,17 +11,16 @@ body {
 }
 
 h1 a {
-font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 h1 a.text-light:hover {
-color: white!important;
-text-decoration: none!important;
+  color: white !important;
+  text-decoration: none !important;
 }
-.nuevo-post{
+.nuevo-post {
   font-weight: bold;
   text-transform: uppercase;
 }
-
 
 .form-group label,
 .list-group-item {
@@ -31,20 +29,20 @@ text-decoration: none!important;
 
 /* .navbar .btn {
 flex:0;
-}
-@media (min-width:480px){
+} */
+/* @media (max-width: 480px) {
   .navbar .btn {
     flex: 0;
   }
 } */
 .acciones {
-margin: 1rem 0;
+  margin: 1rem 0;
 }
-@media (min-width:480px) {
-.acciones{
-  margin: 0;
+@media (min-width: 768px) {
+  .acciones {
+    margin: 0;
+  }
 }
-}
-.acciones > *{
-flex: 1;
+.acciones > * {
+  flex: 1;
 }
