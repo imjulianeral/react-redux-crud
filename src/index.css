@@ -23,21 +23,19 @@ text-decoration: none!important;
   text-transform: uppercase;
 }
 
-.btn {
-  font-weight: bold;
-}
+
 .form-group label,
 .list-group-item {
   font-size: 1.4rem;
 }
 
-.navbar .btn {
+/* .navbar .btn {
 flex:1;
-}
+} */
 @media (min-width:768px){
-.navbar .btn {
+/* .navbar .btn {
   flex: 0;
-}
+} */
 }
 .acciones {
 margin: 1rem 0;
