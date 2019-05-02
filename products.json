@@ -24,6 +24,11 @@
       "nombre": "Pastel de Fresa",
       "precio": "40",
       "id": 6
+    },
+    {
+      "nombre": "Roles de canela",
+      "precio": "80",
+      "id": 7
     }
   ]
 }

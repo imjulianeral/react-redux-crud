@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addProduct } from '../actions/productsActions';
 
-export default class addProduct extends Component {
+class AddProduct extends Component {
   state = {
     name: '',
     price: '',
@@ -25,7 +27,17 @@ export default class addProduct extends Component {
       this.setState({ error: false });
     }
 
+    const dataProduct = {
+      nombre: this.state.name,
+      precio: this.state.price
+    }
 
+    this.props.addProduct(dataProduct);
+    setTimeout(() => {
+
+      this.props.history.push('/');
+      
+    }, 100);
   }
 
   render() {
@@ -60,3 +72,5 @@ export default class addProduct extends Component {
     )
   }
 }
+
+export default connect(null, { addProduct }) (AddProduct);

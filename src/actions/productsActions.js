@@ -1,4 +1,4 @@
-import { SHOW_PRODUCTS, DELETE_PRODUCT } from './types';
+import { SHOW_PRODUCTS, DELETE_PRODUCT, ADD_PRODUCT } from './types';
 import axios from 'axios';
 
 export const showProducts = () => async dispatch => {
@@ -13,5 +13,12 @@ export const deleteProducts = id => async dispatch => {
     dispatch({
         type: DELETE_PRODUCT,
         payload: id
+    });
+}
+export const addProduct = post => async dispatch => {
+    const resp = await axios.post(`http://localhost:5000/products/`, post);
+    dispatch({
+        type: ADD_PRODUCT,
+        payload: resp.data
     });
 }

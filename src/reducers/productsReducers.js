@@ -1,4 +1,4 @@
-import { SHOW_PRODUCTS, DELETE_PRODUCT } from '../actions/types';
+import { SHOW_PRODUCTS, DELETE_PRODUCT, ADD_PRODUCT } from '../actions/types';
 
 // EACH reducer has his own state
 const initialState = {
@@ -16,6 +16,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 products: state.products.filter(product => product.id !== action.payload)
+            }
+        case ADD_PRODUCT:
+            return {
+                ...state,
+                products: [...state, action.payload]
             }
     
         default:
