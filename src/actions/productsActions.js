@@ -1,4 +1,4 @@
-import { SHOW_PRODUCTS } from './types';
+import { SHOW_PRODUCTS, DELETE_PRODUCT } from './types';
 import axios from 'axios';
 
 export const showProducts = () => async dispatch => {
@@ -6,5 +6,12 @@ export const showProducts = () => async dispatch => {
     dispatch({
         type: SHOW_PRODUCTS,
         payload: resp.data
+    });
+}
+export const deleteProducts = id => async dispatch => {
+    await axios.delete(`http://localhost:5000/products/${id}`);
+    dispatch({
+        type: DELETE_PRODUCT,
+        payload: id
     });
 }

@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+// Redux
+import { connect } from 'react-redux';
+import { deleteProducts } from '../actions/productsActions';
 
-export default class SingleProduct extends Component {
+class SingleProduct extends Component {
+  deleteProduct = () => {
+    this.props.deleteProducts(this.props.data.id);
+  }
+
   render() {
     const { id, nombre, precio } = this.props.data;
     return (
@@ -13,10 +20,12 @@ export default class SingleProduct extends Component {
           </div>
           <div className="col-md-4 d-flex justify-content-end acciones">
             <Link to={`/products/update/${id}`} className="btn btn-primary mr-2">Edit</Link>
-            <button type="button" className="btn btn-danger">Delete</button>
+            <button onClick={ this.deleteProduct } type="button" className="btn btn-danger">Delete</button>
           </div>
         </div>
       </li>
     )
   }
 }
+
+export default connect(null, { deleteProducts }) (SingleProduct);
