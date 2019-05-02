@@ -56,7 +56,7 @@ class AddProduct extends Component {
                             <label>Price</label>
                             <input onChange={this.handleChange} name="price" type="text" className="form-control" placeholder="Precio" />
                         </div>
-                        <button type="submit" className="btn btn-primary font-weight-bold text-uppercase d-block w-100">Agregar</button>
+                        <button type="submit" className="btn btn-primary font-weight-bold text-uppercase d-block w-100">Add</button>
                     </form>
                     { this.state.error ? 
                       <div className="font-weight-bold alert alert-danger text-center mt-4">

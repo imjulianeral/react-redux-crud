@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addProduct } from '../actions/productsActions';
+import { showSingleProduct, updateProduct } from '../actions/productsActions';
 
 class UpdateProduct extends Component {
   state = {
     name: '',
     price: '',
     error: false
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.showSingleProduct(id);
+  }
+  componentWillReceiveProps(nextProps, nextState) {
+    const { nombre, precio } = nextProps.product;
+    this.setState({
+      name: nombre,
+      price: precio
+    });
   }
 
   handleChange = e => {
@@ -27,7 +39,10 @@ class UpdateProduct extends Component {
       this.setState({ error: false });
     }
 
+    const { id } = this.props.match.params;
+
     const dataProduct = {
+      id,
       nombre: this.state.name,
       precio: this.state.price
     }
@@ -41,6 +56,7 @@ class UpdateProduct extends Component {
   }
 
   render() {
+    const { name, price } = this.state;
     return (
       <div className="row justify-content-center mt-5">
         <div className="col-md-8">
@@ -50,13 +66,13 @@ class UpdateProduct extends Component {
                     <form onSubmit={this.addProduct}>
                         <div className="form-group">
                             <label>Title</label>
-                            <input onChange={this.handleChange} name="name" type="text" className="form-control" placeholder="Titulo" />
+                            <input defaultValue={name} onChange={this.handleChange} name="name" type="text" className="form-control" placeholder="Titulo" />
                         </div>
                         <div className="form-group">
                             <label>Price</label>
-                            <input onChange={this.handleChange} name="price" type="text" className="form-control" placeholder="Precio" />
+                            <input defaultValue={price} onChange={this.handleChange} name="price" type="text" className="form-control" placeholder="Precio" />
                         </div>
-                        <button type="submit" className="btn btn-primary font-weight-bold text-uppercase d-block w-100">Agregar</button>
+                        <button type="submit" className="btn btn-primary font-weight-bold text-uppercase d-block w-100">Update</button>
                     </form>
                     { this.state.error ? 
                       <div className="font-weight-bold alert alert-danger text-center mt-4">
@@ -73,4 +89,8 @@ class UpdateProduct extends Component {
   }
 }
 
-export default connect(null, {  }) (UpdateProduct);
+const mapStateToProps = state => ({
+  product: state.products.product
+});
+
+export default connect(mapStateToProps, { showSingleProduct, updateProduct }) (UpdateProduct);
