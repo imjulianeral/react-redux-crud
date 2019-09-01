@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default class Header extends Component {
-  render() {
+export default function Header() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between d-flex">
-        <h1><Link to={'/'} className="text-light">CRUD - React, Redux, REST API & Axios</Link></h1>
-        <Link to={'/products/add'} className="btn btn-danger nuevo-post">Add Product &#43;</Link>
-      </nav>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
+            <div className="container">
+                <h1>
+                    <Link to={ '/' } className="text-light">CRUD - React, Redux, Hooks, REST API & Axios</Link>
+                </h1>
+
+                <Link to={ '/products/new' } className="btn btn-danger nuevo-post d-block d-md-inline-block">
+                    Add Product &#43;
+                </Link>
+            </div>
+        </nav>
     )
-  }
 }

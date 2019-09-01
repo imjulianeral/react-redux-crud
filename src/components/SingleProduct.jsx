@@ -1,31 +1,44 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 // Redux
-import { connect } from 'react-redux';
-import { deleteProducts } from '../actions/productsActions';
+import { deleteProductAction } from '../actions/productsActions';
+import { useDispatch } from 'react-redux';
 
-class SingleProduct extends Component {
-  deleteProduct = () => {
-    this.props.deleteProducts(this.props.data.id);
-  }
+export default function SingleProduct({ product: { price, name, id } }) {
 
-  render() {
-    const { id, nombre, precio } = this.props.data;
+    const dispatch = useDispatch();
+
+    const confirmDeleteProduct = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "A deleted product can't be recovered",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete it!',
+            cancelButtonText: 'Cancel'
+          }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                'Deleted',
+                'The product has been deleted',
+                'success'
+              )
+              dispatch(deleteProductAction(id));
+            }
+          })
+    }
+
     return (
-      <li className="list-group-item">
-        <div className="row justify-content-between align-items-center">
-          <div className="col-md-8 d-flex justify-content-between align-items-center">
-            <p className="text-dark m-0">{ nombre }</p>
-            <span className="badge badge-warning text-dark">$ { precio }</span>
-          </div>
-          <div className="col-md-4 d-flex justify-content-end acciones">
-            <Link to={`/products/update/${id}`} className="btn btn-primary mr-2">Edit</Link>
-            <button onClick={ this.deleteProduct } type="button" className="btn btn-danger">Delete</button>
-          </div>
-        </div>
-      </li>
+        <tr>
+            <td>{ name }</td>
+            <td><span className="font-weight-bold">$ { price }</span></td>
+            <td className="acciones">
+                <Link to={`/products/edit/${id}`} className="btn btn-primary mr-2">Edit</Link>
+                <button className="btn btn-danger" onClick={ () => confirmDeleteProduct(id) }>Delete</button>
+            </td>
+        </tr>
     )
-  }
 }
-
-export default connect(null, { deleteProducts }) (SingleProduct);
